@@ -11,29 +11,18 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
         http://www.springframework.org/schema/data/jpa
-        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd" >
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd" >
                             
     <!-- Rastreia as anotacoes encontradas -->
     <context:component-scan base-package="
         br.com.rnglnd.estoquewebagrichile.entidade, 
-        br.com.rnglnd.estoquewebagrichile.repositorios, 
         br.com.rnglnd.estoquewebagrichile.mvc"/>
+    <jpa:repositories 
+        base-package="br.com.rnglnd.estoquewebagrichile.repositorios" 
+        transaction-manager-ref="txManager"/>
     <mvc:annotation-driven />
-    
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="ignoreResourceNotFound" value="true"/>
-        <property name="locations">
-            <list>
-                <value>file:/etc/meudiretorio/property1.properties</value>
-                <value>file:/etc/meudiretorio/property2.properties</value>
-            </list>
-        </property>
-    </bean>
-    
-    <bean name="properties" class="br.com.meupacote.MinhaClassePropertiesUI">
-        <property name="minhaAplicacaoWs" value="${minhaaplicacao.ws}"></property>
-    </bean>
-    
     
     
     <bean id="viewResolver" 
