@@ -1,11 +1,13 @@
 package br.com.rnglnd.estoquewebagrichile.entidade;
 
+import br.com.rnglnd.estoquewebagrichile.enumeradores.Unidades;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +24,7 @@ public class Produto implements Serializable {
     private String codigoBarras;
     private BigDecimal valor;
     private BigDecimal quantidade;
-    private String unidadeMedida; // isto pode virar um enum com valores: UNIDADES, KG, LT, CX, PC
+    private Unidades unidadeMedida; // isto pode virar um enum com valores: UNIDADES, KG, LT, CX, PC
     private DateTime dataValidade;
     
     
@@ -75,10 +77,11 @@ public class Produto implements Serializable {
     
     
     @Column(name = "UNIDADE_MEDIDA")
-    public String getUnidadeMedida() {
+    @Enumerated(EnumType.STRING)
+    public Unidades getUnidadeMedida() {
         return unidadeMedida;
     }
-    public void setUnidadeMedida(String unidadeMedida) {
+    public void setUnidadeMedida(Unidades unidadeMedida) {
         this.unidadeMedida = unidadeMedida;
     }
     

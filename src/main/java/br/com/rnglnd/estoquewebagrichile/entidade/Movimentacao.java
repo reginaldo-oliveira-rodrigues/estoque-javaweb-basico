@@ -1,11 +1,14 @@
 package br.com.rnglnd.estoquewebagrichile.entidade;
 
+import br.com.rnglnd.estoquewebagrichile.enumeradores.TiposMovimentacao;
+import br.com.rnglnd.estoquewebagrichile.enumeradores.Unidades;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +25,8 @@ public class Movimentacao implements Serializable {
     private DateTime dataMovimentacao;
     private Produto produto;
     private BigDecimal quantidade;
-    private String unidadeMedida; // isto pode virar um enum com valores: UNIDADES, KG, LT, CX, PC
-    private String tipoMovimentacao; // isto vai virar enum com valores: ENTRADA e SAIDA
+    private Unidades unidadeMedida;
+    private TiposMovimentacao tipoMovimentacao;
     
     
     @Id
@@ -65,19 +68,21 @@ public class Movimentacao implements Serializable {
     
     
     @Column(name = "UNIDADE_MEDIDA")
-    public String getUnidadeMedida() {
+    @Enumerated(EnumType.STRING)
+    public Unidades getUnidadeMedida() {
         return unidadeMedida;
     }
-    public void setUnidadeMedida(String unidadeMedida) {
+    public void setUnidadeMedida(Unidades unidadeMedida) {
         this.unidadeMedida = unidadeMedida;
     }
 
     
     @Column(name = "TIPO_MOVIMENTACAO")
-    public String getTipoMovimentacao() {
+    @Enumerated(EnumType.STRING)
+    public TiposMovimentacao getTipoMovimentacao() {
         return tipoMovimentacao;
     }
-    public void setTipoMovimentacao(String tipoMovimentacao) {
+    public void setTipoMovimentacao(TiposMovimentacao tipoMovimentacao) {
         this.tipoMovimentacao = tipoMovimentacao;
     }
         
