@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface ProdutoRepositorio extends JpaRepository<Produto, Long>{
-    @Query("select pnp from Produto pnp where pnp.nome = :nome")
+    @Query("select p from Produto p where p.nome = :nome")
     Produto findByNome(@Param("nome") String nome);
 }
