@@ -1,5 +1,16 @@
 package br.com.rnglnd.estoquewebagrichile.tests;
 
-public class MovimentacaoTeste {
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.Test;
 
+@TransactionConfiguration(defaultRollback = false)
+@Transactional
+public class MovimentacaoTeste {
+    
+    @Test
+    public void testando(){
+        
+    }
+    
 }
