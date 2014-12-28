@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,13 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.joda.time.DateTime;
+
 @Entity
 public class Balanco implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private List<Produto> produtos;
     private BigDecimal total;
-    private Date dataBalanco;
+    private DateTime dataBalanco;
     
     
     @Id
@@ -53,10 +56,10 @@ public class Balanco implements Serializable {
     }
     
     @Column(name = "DATA_BALANCO")
-    public Date getDataBalanco() {
+    public DateTime getDataBalanco() {
         return dataBalanco;
     }
-    public void setDataBalanco(Date dataBalanco) {
+    public void setDataBalanco(DateTime dataBalanco) {
         this.dataBalanco = dataBalanco;
     }
     

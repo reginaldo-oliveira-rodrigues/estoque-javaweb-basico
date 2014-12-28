@@ -3,6 +3,7 @@ package br.com.rnglnd.estoquewebagrichile.entidade;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,11 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.joda.time.DateTime;
+
 @Entity
 public class Movimentacao implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
-    private Date dataMovimentacao;
+    private DateTime dataMovimentacao;
     private Produto produto;
     private BigDecimal quantidade;
     private String unidadeMedida; // isto pode virar um enum com valores: UNIDADES, KG, LT, CX, PC
@@ -35,10 +38,10 @@ public class Movimentacao implements Serializable {
 
     
     @Column(name = "DATA_MOVIMENTACAO")
-    public Date getDataMovimentacao() {
+    public DateTime getDataMovimentacao() {
         return dataMovimentacao;
     }
-    public void setDataMovimentacao(Date dataMovimentacao) {
+    public void setDataMovimentacao(DateTime dataMovimentacao) {
         this.dataMovimentacao = dataMovimentacao;
     }
 

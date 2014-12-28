@@ -3,12 +3,15 @@ package br.com.rnglnd.estoquewebagrichile.entidade;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "PRODUTO")
@@ -20,7 +23,7 @@ public class Produto implements Serializable {
     private BigDecimal valor;
     private BigDecimal quantidade;
     private String unidadeMedida; // isto pode virar um enum com valores: UNIDADES, KG, LT, CX, PC
-    private Date dataValidade;
+    private DateTime dataValidade;
     
     
     
@@ -81,10 +84,10 @@ public class Produto implements Serializable {
     
     
     @Column(name = "DATA_VALIDADE")
-    public Date getDataValidade() {
+    public DateTime getDataValidade() {
         return dataValidade;
     }
-    public void setDataValidade(Date dataValidade) {
+    public void setDataValidade(DateTime dataValidade) {
         this.dataValidade = dataValidade;
     }
     
