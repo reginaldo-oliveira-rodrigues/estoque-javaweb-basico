@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd" >
+                            
+    <!-- Rastreia as anotacoes encontradas -->
+    <context:component-scan base-package="
+        br.com.rnglnd.estoquewebagrichile.entidade, 
+        br.com.rnglnd.estoquewebagrichile.repositorios, 
+        br.com.rnglnd.estoquewebagrichile.mvc"/>
+    <mvc:annotation-driven />
+    
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>file:/etc/meudiretorio/property1.properties</value>
+                <value>file:/etc/meudiretorio/property2.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean name="properties" class="br.com.meupacote.MinhaClassePropertiesUI">
+        <property name="minhaAplicacaoWs" value="${minhaaplicacao.ws}"></property>
+    </bean>
+    
+    
+    
+    <bean id="viewResolver" 
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+    </bean>
+    
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+    </bean>
+    
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+    
+    <mvc:interceptors>
+        <bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+            <property name="cacheSeconds" value="0"/>
+            <property name="useExpiresHeader" value="true"/>
+            <property name="useCacheControlHeader" value="true"/>
+            <property name="useCacheControlNoStore" value="true"/>
+        </bean>
+    </mvc:interceptors>
+    
+</beans>
