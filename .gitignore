@@ -1,4 +1,6 @@
-target/
+target
+test-output
+repo
 /src/main/webapp/META-INF/
 
 #Ignorar arquivos e pastas do eclipse
